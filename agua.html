@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L’Eternelle</title>
+  <style>
+   body {
+      font-family: 'Arial', sans-serif;
+      background-color: #C69CDB;
+      margin: 0;
+      padding: 0;
+      color: #000000;
+    }
+
+    header {
+      background-color: #B6A3DB;
+      padding: 20px;
+      text-align: center;
+      color: #000000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      background-color: #865ADB;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #000000;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    main{
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .cont1{
+      max-width: 400px;
+    }
+
+    .cont2 img{
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    button{
+      background-color: #865ADB;
+      border-radius: 20px;
+      height: 50px;
+      width: 200px;
+      border: 1px solid black;
+      font-size: 18px;
+      color: black;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover{
+      background-color: #865ADB;
+    }
+
+    footer {
+      background-color: #865ADB;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+
+    .descripcion {
+      margin: 40px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>L’Eternelle</h1>
+    <div class="logo">
+      <img src="logo.png" alt="Logo de L’Eternelle" style="margin-top: 3px; width: 60px;">
+    </div>
+  </header>
+  
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="contactos.html">Contacto</a>
+    <a href="carrito.html">Carrito</a>
+  </nav>
+
+  <main>
+    <div class="cont1">
+      <h1>Agua Micelar</h1>
+      <h4>Precio: $14.000</h4>
+      <h4>Características:</h4>
+      <ul>
+        <li>Apta para todo tipo de pieles</li>
+        <li>Vegano</li>
+        <li>Desmaquillante</li>
+      </ul>
+      <br>
+      <button onclick="agregarAlCarrito('Agua micelar', 14000)">Añadir al carrito</button>
+    </div>
+
+    <div class="cont2">
+      <img src="agua" alt="Agua micelar" width="450" height="430">
+    </div>
+  </main>
+
+  <section class="descripcion">
+    <h3>Descripción</h3>
+    <p>
+        El agua micelar bifásica desmaquilla, limpia y nutre en un solo gesto rostro, ojos y labios. Una fórmula que combina la eficacia de las micelas con el aceite de argán capturando las impurezas como un imán, incluso el maquillaje a prueba de agua.
+    </p>
+    <p>
+      Ideal para todo tipo de pieles.
+    </p>
+  </section>
+
+  <footer>
+    © 2025  L’Eternelle. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    function agregarAlCarrito(nombre, precio) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.push({ nombre, precio });
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert(nombre + " fue agregado al carrito ");
+    }
+  </script>
+
+</body>
+</html>
