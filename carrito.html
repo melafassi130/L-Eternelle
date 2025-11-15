@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Finalizar compra</title>
+  <style>
+    body {
+      font-family: 'Bodoni', sans-serif;
+      background-color: #C69CDB;
+      margin: 0;
+      padding: 0;
+      color: #000000;
+    }
+
+    header {
+      background-color: #B6A3DB;
+      padding: 20px;
+      text-align: center;
+      color: #000000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      background-color: #865ADB;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #000000;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    
+    h1 {
+      color: #000000;
+    }
+    .producto {
+      background: rgb(206, 195, 216);
+      margin: 10px 0;
+      padding: 15px;
+      border: 1px solid rgb(0, 0, 0);
+      border-radius: 8px;
+    }
+    .total {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      background: #865ADB;
+      color: rgb(0, 0, 0);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #865ADB;
+    }
+    h1 {
+    color: #000000;
+    text-align: center;   
+    margin-top: 20px;     
+  }
+  footer {
+      background-color: #865ADB;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+  button {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 8px 15px;
+    border: none;
+    background: #865ADB;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    }
+
+
+  </style>
+  <body>
+    <header>
+      <h1>L’Eternelle</h1>
+      <div class="logo">
+        <img src="logo.png" alt="Logo de L’Eternelle" style="margin-top: 3px; width: 60px;">
+      </div>
+    </header>
+  </div>
+  
+  <script>
+  </script>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="contactos.html">Contacto</a>
+      <a href="carrito.html">Carrito</a>
+      
+    </nav>
+</head>
+<body>
+  <h1>Tu Carrito</h1>
+  <div id="listaCarrito"></div>
+  <p class="total" id="total"></p>
+  <button onclick="finalizar()">Finalizar compra</button>
+  <button onclick="vaciarCarrito()">Vaciar carrito</button>
+
+  <script>
+
+    function finalizar(){
+      alert("Pago exitoso, ¡Gracias por su compra!");
+    }
+    function mostrarCarrito() {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      let lista = document.getElementById("listaCarrito");
+      let total = 0;
+      lista.innerHTML = "";
+
+      if (carrito.length == 0) {
+        lista.innerHTML = "<p>El carrito está vacío.</p>";
+      } else {
+        carrito.forEach((item, index) => {
+          total += item.precio;
+          lista.innerHTML += `
+            <div class="producto">
+              <p>${item.nombre} - $${item.precio.toLocaleString()}</p>
+              <button onclick="eliminarDelCarrito(${index})">Quitar</button>
+            </div>
+          `
+        })
+      }
+
+      document.getElementById("total").innerText = "Su total es: $" + total.toLocaleString();
+    }
+
+    function vaciarCarrito() {
+      localStorage.removeItem("carrito");
+      mostrarCarrito();
+    }
+
+    function eliminarDelCarrito(indice) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.splice(indice, 1);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      mostrarCarrito();
+    }
+
+    mostrarCarrito();
+  </script>
+  <footer>
+    <p class="footer">
+      © 2025  L’Eternelle. Todos los derechos reservados.
+    </p>
+  </footer>
+</body>
+</html>
